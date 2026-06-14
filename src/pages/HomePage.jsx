@@ -19,6 +19,15 @@ import {
   Tag,
 } from "lucide-react";
 
+import {
+  FaMoneyCheckAlt,
+  FaLaptop,
+  FaCreditCard,
+  FaDollarSign,
+  FaUniversity,
+  FaHome,
+} from "react-icons/fa";
+
 import phone2 from "../assets/phone12.png";
 import logo from "../assets/BAD .png";
 import open from "../assets/open.png";
@@ -34,7 +43,7 @@ export default function HomePage() {
   const [loading, setLoading] = useState(false);
 
   // Keeping standard React camelCase naming pattern for the state updater
-  const [activeTab, setActiveTab] = useState("business");
+  const [activeTab, setActiveTab] = useState("personal");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -77,6 +86,32 @@ export default function HomePage() {
     }
   };
 
+  const services = [
+    {
+      title: "Business Checking Accounts",
+      icon: FaMoneyCheckAlt,
+    },
+    {
+      title: "Digital Banking",
+      icon: FaLaptop,
+    },
+    {
+      title: "Private Banking",
+      icon: FaCreditCard,
+    },
+    {
+      title: "Mortgage Loans",
+      icon: FaDollarSign,
+    },
+    {
+      title: "Personal Checking",
+      icon: FaUniversity,
+    },
+    {
+      title: "Residential Loans",
+      icon: FaHome,
+    },
+  ];
   return (
     <>
       <div className="bg-[#f8f9fa] text-[#191c1d] font-sans overflow-x-hidden antialiased">
@@ -356,46 +391,45 @@ export default function HomePage() {
           </section>
 
           {/* --- Navigation Shortcuts Grid Segment --- */}
-          <section className="bg-white py-6 border-b border-slate-100 shadow-sm relative z-20">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="flex items-center gap-4 hover:bg-slate-50 p-4 rounded-xl cursor-pointer transition-all border border-transparent hover:border-slate-100 group">
-                <div className="w-12 h-12 rounded-xl bg-[#00647F]/5 flex items-center justify-center text-[#00647F] group-hover:bg-[#00647F]/10 transition-colors shrink-0">
-                  <MapPin className="w-5 h-5" />
-                </div>
-                <div>
-                  <p className="text-sm font-bold text-[#001237]">
-                    Find a Branch
-                  </p>
-                  <p className="text-xs text-slate-500 font-medium">
-                    Locate near you
-                  </p>
-                </div>
+          <section className="py-24 bg-[#f4f4f4]">
+            <div className="max-w-7xl mx-auto px-6">
+              {/* Header */}
+              <div className="text-center max-w-3xl mx-auto mb-20">
+                <h2 className="text-5xl font-black text-[#001237] mb-6">
+                  How Can We Help?
+                </h2>
+
+                <p className="text-[#555] text-lg leading-8">
+                  When it comes to banking, you have a choice. We're a local
+                  bank that is invested in you as well as our communities. Our
+                  commitment to our relationships, service, and expertise help
+                  guide us in our vision to be your "Bank of Choice". We are
+                  GBC, and your success is our mission.
+                </p>
               </div>
 
-              <div className="flex items-center gap-4 hover:bg-slate-50 p-4 rounded-xl cursor-pointer transition-all border border-transparent hover:border-slate-100 group">
-                <div className="w-12 h-12 rounded-xl bg-[#00647F]/5 flex items-center justify-center text-[#00647F] group-hover:bg-[#00647F]/10 transition-colors shrink-0">
-                  <TrendingUp className="w-5 h-5" />
-                </div>
-                <div>
-                  <p className="text-sm font-bold text-[#001237]">
-                    Check Rates
-                  </p>
-                  <p className="text-xs text-slate-500 font-medium">
-                    View daily updates
-                  </p>
-                </div>
-              </div>
+              {/* Services */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-y-20 gap-x-16">
+                {services.map((service, index) => {
+                  const Icon = service.icon;
 
-              <div className="flex items-center gap-4 hover:bg-slate-50 p-4 rounded-xl cursor-pointer transition-all border border-transparent hover:border-slate-100 group">
-                <div className="w-12 h-12 rounded-xl bg-[#00647F]/5 flex items-center justify-center text-[#00647F] group-hover:bg-[#00647F]/10 transition-colors shrink-0">
-                  <HelpCircle className="w-5 h-5" />
-                </div>
-                <div>
-                  <p className="text-sm font-bold text-[#001237]">Support</p>
-                  <p className="text-xs text-slate-500 font-medium">
-                    24/7 client care
-                  </p>
-                </div>
+                  return (
+                    <div
+                      key={index}
+                      className="flex flex-col items-center text-center group cursor-pointer"
+                    >
+                      <div className="w-36 h-36 rounded-full bg-[#a8b3c7] flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                        <div className="w-28 h-28 rounded-full bg-[#001f69] flex items-center justify-center">
+                          <Icon className="text-white text-5xl" />
+                        </div>
+                      </div>
+
+                      <h3 className="mt-6 text-[#001237] text-sm md:text-base font-semibold uppercase tracking-wide">
+                        {service.title}
+                      </h3>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </section>
